@@ -1,16 +1,25 @@
 package util;
 
+import javax.annotation.Resource;
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+//import org.apache.tomcat.jdbc.pool.DataSource;
+//import org.apache.tomcat.jdbc.pool.PoolProperties;
+
 public class DBHelper {
 
     private DBHelper() { }
 
     private static DBHelper dbHelper;
+
+    @Resource(name = "jdbc/ppf")
+    private DataSource ds;
+
 
     public static DBHelper getInstance() {
         if (dbHelper == null) {
@@ -29,9 +38,10 @@ public class DBHelper {
                     append("jdbc:mysql://").        //db type
                     append("localhost:").           //host name
                     append("3306/").                //port
-                    append("fpp_usrs?").          //db name
+                    append("crud_hiber_dm?").          //db name
                     append("user=root&").          //login
-                    append("password=q1");       //password
+                    append("password=q1&").       //password
+                    append("serverTimezone=UTC");
 
             System.out.println("URL: " + url + "\n");
 
@@ -42,5 +52,23 @@ public class DBHelper {
             throw new IllegalStateException();
         }
     }
+
+
+
+        public Connection getTrueMysqlConnection() {
+
+            Connection conn = null;
+
+            try {
+                // check datasource
+                System.out.println("ds=" + ds);
+                conn = ds.getConnection();
+                System.out.println("ds.getConnection()=" + conn);
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return conn;
+        }
 
 }

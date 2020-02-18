@@ -10,49 +10,45 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(
-        name = "AddUser",
-        description = "Ввод нового пользователя - Create...",
-        urlPatterns = "/add"
+        name = "DelUser",
+        description = "Удаление пользователя - Removing...",
+        urlPatterns = "/del"
 )
 
-public class AddServlet extends HttpServlet {
-
-    private UserService usrSrv;
+public class DelServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("Add Servlet Called!");
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/add.jsp");
+        System.out.println("Del Servlet Called!");
+
+        UserService usrSrv = new UserService();
+        List<User> usrsLst = usrSrv.getAllUsers();
+        req.setAttribute("usrsLst", usrsLst);
+
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/del.jsp");
         requestDispatcher.forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("name");
-        String sex = req.getParameter("sex");
-        byte age = (byte) Integer.parseInt(req.getParameter("age"));
-        String email = req.getParameter("email");
+        UserService usrSrv = new UserService();
         String ssn = req.getParameter("ssn");
+        System.out.println("Deleting user having this SSN = " + ssn);
 
-        User user = new User(name, sex, age, email, ssn);
-
-        System.out.println(user.toString());
-
-        usrSrv = new UserService();
-
-
-        if (usrSrv.addClient(user)) {
-            System.out.println("User's added: " + user.toString());
+        if (!ssn.isEmpty()) {
+            usrSrv.deleteUser(ssn);
             resp.setStatus(HttpServletResponse.SC_OK);
         } else {
             System.out.println("Something wrong happened...");
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
 
-        req.setAttribute("user", user);
+        req.setAttribute("ssn", ssn);
         doGet(req, resp);
     }
+
 
 }
