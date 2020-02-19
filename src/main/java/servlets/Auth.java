@@ -18,12 +18,6 @@ import java.io.PrintWriter;
 
 public class Auth extends HttpServlet {
 
-    //private static final long serialVersionUID = 1L;
-
-//    public authorization() {
-//        super();
-//    }
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("Auth Servlet Called!");
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/login.jsp");

@@ -2,14 +2,10 @@ package util;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
-//import org.apache.tomcat.jdbc.pool.DataSource;
-//import org.apache.tomcat.jdbc.pool.PoolProperties;
 
 public class DBHelper {
 

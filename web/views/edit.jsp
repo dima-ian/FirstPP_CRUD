@@ -7,6 +7,29 @@
 <head>
     <title>Edit User's Data</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <style type="text/css">
+        .TFtable{
+            width:100%;
+            border-collapse:collapse;
+        }
+        .TFtable td{
+            padding:7px; border:#4e95f4 1px solid;
+        }
+        /* provide some minimal visual accomodation for IE8 and below */
+        .TFtable tr{
+            background: #b8d1f3;
+        }
+        /*  Define the background color for all the ODD background rows  */
+        .TFtable tr:nth-child(odd){
+            background: #b8d1f3;
+        }
+        /*  Define the background color for all the EVEN background rows  */
+        .TFtable tr:nth-child(even){
+            background: #dae5f4;
+        }
+    </style>
+
     <style>
         table {
             border-collapse: collapse;
@@ -40,14 +63,14 @@
         <div class="w3-container w3-green w3-padding">
             <h2 class="w3-xlarge">Updating User's Data</h2>
         </div>
-        <br method="post" class="w3-selection w3-light-grey w3-padding">
+        <form method="post" class="w3-selection w3-light-grey w3-padding">
+
             <div class="w3-padding">
             <label class="w3-padding">Enter user's SSN :
-                <input type="text" name="ssn" class="w3-input w3-animate-input w3-border w3-round-large" style="width: 30%"><br />
+                <input type="text" name="ssn" required="required" pattern="[A-Za-z0-9]{1,20}" class="w3-input w3-animate-input w3-border w3-round-large" style="width: 30%"><br />
             </label>
-            <button type="submit" class="w3-btn w3-green w3-round-large w3-margin-bottom">Submit</button> </br>
+                <button type="submit" class="w3-btn w3-green w3-round-large w3-margin-bottom">Submit</button> </br>
             </div>
-
 
             <label>Name:
                 <input type="text" name="name" class="w3-input w3-animate-input w3-border w3-round-large" style="width: 30%"><br />
@@ -56,12 +79,11 @@
                 <input type="text" name="sex" class="w3-input w3-animate-input w3-border w3-round-large" style="width: 30%" ><br />
             </label>
             <label>Age:
-                <input type="number" name="age" value="" class="w3-input w3-animate-input w3-border w3-round-large" style="width: 30%"><br />
+                <input type="number" name="age" value="1" min="1" max="150" class="w3-input w3-animate-input w3-border w3-round-large" style="width: 30%"><br />
             </label>
             <label>Email:
                 <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="w3-input w3-animate-input w3-border w3-round-large" style="width: 30%"><br />
             </label>
-
         </form>
     </div>
 
@@ -72,7 +94,7 @@
             </div>
 
 
-            <table>
+            <table class="TFtable">
                 <thead>
                 <tr>
                     <th>Id</th>

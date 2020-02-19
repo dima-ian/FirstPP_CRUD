@@ -2,7 +2,6 @@ package servlets;
 
 import entities.User;
 import service.UserService;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,5 +46,18 @@ public class UpdServlet extends HttpServlet {
         System.out.println(user.toString());
 
         usrSrv = new UserService();
+
+        if (usrSrv.updateUser(user)) {
+            System.out.println("User's updated: " + user.toString());
+            resp.setStatus(HttpServletResponse.SC_OK);
+        } else {
+            System.out.println("Something wrong happened...");
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+
+        req.setAttribute("user", user);
+        doGet(req, resp);
     }
+
 }
+

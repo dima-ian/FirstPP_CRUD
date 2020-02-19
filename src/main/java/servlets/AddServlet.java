@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(
         name = "AddUser",
@@ -24,6 +25,11 @@ public class AddServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("Add Servlet Called!");
+
+        UserService usrSrv = new UserService();
+        List<User> usrsLst = usrSrv.getAllUsers();
+        req.setAttribute("usrsLst", usrsLst);
+
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/add.jsp");
         requestDispatcher.forward(req, resp);
     }
@@ -41,6 +47,11 @@ public class AddServlet extends HttpServlet {
         System.out.println(user.toString());
 
         usrSrv = new UserService();
+
+        if (user.getSsn().equals("")){
+            System.out.println("SSN is mandatory param!");
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
 
 
         if (usrSrv.addClient(user)) {

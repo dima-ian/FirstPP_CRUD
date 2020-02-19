@@ -9,6 +9,29 @@
 <head>
     <title>Список пользователей : </title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <style type="text/css">
+        .TFtable{
+            width:100%;
+            border-collapse:collapse;
+        }
+        .TFtable td{
+            padding:7px; border:#4e95f4 1px solid;
+        }
+        /* provide some minimal visual accomodation for IE8 and below */
+        .TFtable tr{
+            background: #b8d1f3;
+        }
+        /*  Define the background color for all the ODD background rows  */
+        .TFtable tr:nth-child(odd){
+            background: #b8d1f3;
+        }
+        /*  Define the background color for all the EVEN background rows  */
+        .TFtable tr:nth-child(even){
+            background: #dae5f4;
+        }
+    </style>
+
     <style>
         table {
             border-collapse: collapse;
@@ -41,7 +64,7 @@
         </div>
 
 
-        <table>
+        <table class="TFtable">
             <thead>
             <tr>
                 <th>Id</th>

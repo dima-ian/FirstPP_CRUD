@@ -1,11 +1,7 @@
 import entities.User;
 import service.UserService;
 import util.DBHelper;
-
 import java.sql.Connection;
-import java.sql.DriverManager;
-
-import java.sql.SQLException;
 
 public class TestMain {
 

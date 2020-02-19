@@ -2,7 +2,6 @@ package service;
 
 import dao.UserDAO;
 import entities.User;
-import exception.DBException;
 import util.DBHelper;
 
 import java.sql.SQLException;

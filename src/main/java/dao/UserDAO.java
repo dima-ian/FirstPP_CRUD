@@ -47,6 +47,19 @@ public class UserDAO {
 
         User usr = getUserBySsn(user.getSsn());
 
+        if (user.getName().equals("")) {
+            user.setName(usr.getName());
+        }
+        if (user.getSex().equals("")) {
+            user.setSex(usr.getSex());
+        }
+        if (user.getAge() == 0) {
+            user.setAge(usr.getAge());
+        }
+        if (user.getEmail().equals("")) {
+            user.setEmail(usr.getEmail());
+        }
+
         PreparedStatement preStmt = conn.prepareStatement("UPDATE users SET name=?, sex=?, age=?, email=? WHERE ssn=? " );
         if ( validateUser(usr.getSsn())) {
             //preStmt.setString(6, );
