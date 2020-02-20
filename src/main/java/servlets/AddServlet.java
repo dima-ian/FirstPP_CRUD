@@ -24,7 +24,6 @@ public class AddServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("Add Servlet Called!");
 
         UserService usrSrv = new UserService();
         List<User> usrsLst = usrSrv.getAllUsers();
@@ -43,27 +42,18 @@ public class AddServlet extends HttpServlet {
         String ssn = req.getParameter("ssn");
 
         User user = new User(name, sex, age, email, ssn);
-
-        System.out.println(user.toString());
-
         usrSrv = new UserService();
 
-        if (user.getSsn().equals("")){
-            System.out.println("SSN is mandatory param!");
+        if (user.getSsn().equals("")) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
-
-
         if (usrSrv.addClient(user)) {
-            System.out.println("User's added: " + user.toString());
             resp.setStatus(HttpServletResponse.SC_OK);
         } else {
-            System.out.println("Something wrong happened...");
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
 
         req.setAttribute("user", user);
         doGet(req, resp);
     }
-
 }

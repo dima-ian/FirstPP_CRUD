@@ -11,8 +11,6 @@ public class User {
     private String email;
     private String ssn;
 
-    //public User() { }
-
     public User(long id, String name, String sex, byte age, String email, String ssn) {
         this.id = id;
         this.name = name;

@@ -23,9 +23,6 @@ public class ListServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        System.out.println("List Servlet Called!");
-
         UserService usrSrv = new UserService();
         List<User> usrsLst = usrSrv.getAllUsers();
         req.setAttribute("usrsLst", usrsLst);
@@ -33,5 +30,4 @@ public class ListServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/list.jsp");
         requestDispatcher.forward(req, resp);
     }
-
 }

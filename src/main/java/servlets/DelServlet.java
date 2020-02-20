@@ -22,7 +22,6 @@ public class DelServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("Del Servlet Called!");
 
         UserService usrSrv = new UserService();
         List<User> usrsLst = usrSrv.getAllUsers();
@@ -36,19 +35,15 @@ public class DelServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserService usrSrv = new UserService();
         String ssn = req.getParameter("ssn");
-        System.out.println("Deleting user having this SSN = " + ssn);
 
         if (!ssn.isEmpty()) {
             usrSrv.deleteUser(ssn);
             resp.setStatus(HttpServletResponse.SC_OK);
         } else {
-            System.out.println("Something wrong happened...");
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
 
         req.setAttribute("ssn", ssn);
         doGet(req, resp);
     }
-
-
 }

@@ -1,13 +1,11 @@
 <%@ page import="java.util.List" %>
 <%@ page import="entities.User" %>
-
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
 <head>
-    <title>Список пользователей : </title>
+    <title>Users List : </title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
     <style type="text/css">
@@ -37,7 +35,6 @@
             border-collapse: collapse;
             width: 100%;
         }
-
         th, td {
             text-align: left;
             padding: 8px;
@@ -62,7 +59,6 @@
         <div class="w3-container w3-light-blue">
             <h2 class="w3-xlarge">Users List</h2>
         </div>
-
 
         <table class="TFtable">
             <thead>
@@ -90,26 +86,6 @@
             </tbody>
         </table>
 
-
-
-
-<%--        <%--%>
-<%--            List<User> users = (List<User>) request.getAttribute("usrsLst");--%>
-
-<%--            if (users != null && !users.isEmpty()) {--%>
-<%--                out.println("<ul class=\"w3-ul\">");--%>
-<%--                for (User u : users) {--%>
-<%--                    out.println("<li class=\"w3-hover-sand\">" + u.toString() + "</li>");--%>
-<%--                }--%>
-<%--                out.println("</ul>");--%>
-
-<%--            } else out.println("<div class=\"w3-panel w3-red w3-display-container w3-card-4 w3-round\">\n"--%>
-<%--                    +--%>
-<%--                    "   <span onclick=\"this.parentElement.style.display='none'\"\n" +--%>
-<%--                    "   class=\"w3-button w3-margin-right w3-display-right w3-round-large w3-hover-red w3-border w3-border-red w3-hover-border-grey\">×</span>\n" +--%>
-<%--                    "   <h5>There are no users yet!</h5>\n" +--%>
-<%--                    "</div>");--%>
-<%--        %>--%>
     </div>
 </div>
 

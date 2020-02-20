@@ -23,7 +23,6 @@ public class UpdServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("Upd Servlet Called!");
 
         UserService usrSrv = new UserService();
         List<User> usrsLst = usrSrv.getAllUsers();
@@ -40,24 +39,18 @@ public class UpdServlet extends HttpServlet {
         byte age = (byte) Integer.parseInt(req.getParameter("age"));
         String email = req.getParameter("email");
         String ssn = req.getParameter("ssn");
-
         User user = new User(name, sex, age, email, ssn);
-
-        System.out.println(user.toString());
 
         usrSrv = new UserService();
 
         if (usrSrv.updateUser(user)) {
-            System.out.println("User's updated: " + user.toString());
             resp.setStatus(HttpServletResponse.SC_OK);
         } else {
-            System.out.println("Something wrong happened...");
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
 
         req.setAttribute("user", user);
         doGet(req, resp);
     }
-
 }
 
