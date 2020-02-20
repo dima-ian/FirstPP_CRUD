@@ -33,8 +33,6 @@ public class UserDAO {
     public boolean deleteUser(String ssn) throws SQLException {
         try {
             User usr = getUserBySsn(ssn);
-            System.out.println(usr.toString());
-
             PreparedStatement preStmt = conn.prepareStatement("DELETE FROM users WHERE id = ?");
             preStmt.setLong(1, usr.getId());
             preStmt.executeUpdate();
