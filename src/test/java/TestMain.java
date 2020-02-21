@@ -8,7 +8,8 @@ public class TestMain {
 
         //System.out.println(HiberConnector.getSessionFactory());
 
-        System.out.println(DbMngr.getSessionFactory());
+ //       System.out.println(DbMngr.getSessionFactory());
+        System.out.println(DbMngr.getSessionFactorySide());
 
 
 //        DBHelper dbHelper = DBHelper.getInstance();
