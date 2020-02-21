@@ -1,11 +1,14 @@
-import entities.User;
-import service.UserService;
-import util.DBHelper;
-import java.sql.Connection;
+import sun.security.provider.HashDrbg;
+import util.DbMngr;
+import util.HiberConnector;
 
 public class TestMain {
 
     public static void main(String[] args) throws Exception {
+
+        //System.out.println(HiberConnector.getSessionFactory());
+
+        System.out.println(DbMngr.getSessionFactory());
 
 
 //        DBHelper dbHelper = DBHelper.getInstance();

@@ -20,12 +20,38 @@
         </plugins>
     </build>
 
+    <properties>
+<!--        <maven.compiler.source>1.8</maven.compiler.source>-->
+<!--        <maven.compiler.target>1.8</maven.compiler.target>-->
+        <mysql.mysql-connector-java.version>5.1.35</mysql.mysql-connector-java.version>
+        <org.hibernate.hibernate-core.version>4.4.10.Final</org.hibernate.hibernate-core.version>
+    </properties>
+
     <dependencies>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.10.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <version>1.0.0.Final</version>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>javax.persistence</groupId>-->
+<!--            <artifactId>persistence-api</artifactId>-->
+<!--            <version>1.0.2</version>-->
+<!--        </dependency>-->
+
 
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.35</version>
+            <version>8.0.17</version>
         </dependency>
 
         <!-- Servlet API 4.0 for tomcat 9 -->

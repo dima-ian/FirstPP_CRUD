@@ -1,8 +1,7 @@
-package servlets;
+package servlets.jdbc;
 
 import entities.User;
-import service.UserService;
-
+import service.UserJdbcService;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,23 +12,23 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(
-        name = "AddUser",
-        description = "Ввод нового пользователя - Create...",
-        urlPatterns = "/add"
+        name = "UpdUser",
+        description = "Редактирование данных пользователя - Updating...",
+        urlPatterns = "/upd"
 )
 
-public class AddServlet extends HttpServlet {
+public class UpdServlet extends HttpServlet {
 
-    private UserService usrSrv;
+    private UserJdbcService usrSrv;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        UserService usrSrv = new UserService();
+        UserJdbcService usrSrv = new UserJdbcService();
         List<User> usrsLst = usrSrv.getAllUsers();
         req.setAttribute("usrsLst", usrsLst);
 
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/add.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/jdbc/edit.jsp");
         requestDispatcher.forward(req, resp);
     }
 
@@ -40,14 +39,11 @@ public class AddServlet extends HttpServlet {
         byte age = (byte) Integer.parseInt(req.getParameter("age"));
         String email = req.getParameter("email");
         String ssn = req.getParameter("ssn");
-
         User user = new User(name, sex, age, email, ssn);
-        usrSrv = new UserService();
 
-        if (user.getSsn().equals("")) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        }
-        if (usrSrv.addClient(user)) {
+        usrSrv = new UserJdbcService();
+
+        if (usrSrv.updateUser(user)) {
             resp.setStatus(HttpServletResponse.SC_OK);
         } else {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -57,3 +53,4 @@ public class AddServlet extends HttpServlet {
         doGet(req, resp);
     }
 }
+

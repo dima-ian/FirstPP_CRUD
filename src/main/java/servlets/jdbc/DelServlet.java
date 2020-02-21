@@ -1,7 +1,8 @@
-package servlets;
+package servlets.jdbc;
 
 import entities.User;
-import service.UserService;
+import service.UserJdbcService;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,45 +13,37 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(
-        name = "UpdUser",
-        description = "Редактирование данных пользователя - Updating...",
-        urlPatterns = "/upd"
+        name = "DelUser",
+        description = "Удаление пользователя - Removing...",
+        urlPatterns = "/del"
 )
 
-public class UpdServlet extends HttpServlet {
-
-    private UserService usrSrv;
+public class DelServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        UserService usrSrv = new UserService();
+        UserJdbcService usrSrv = new UserJdbcService();
         List<User> usrsLst = usrSrv.getAllUsers();
         req.setAttribute("usrsLst", usrsLst);
 
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/edit.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/jdbc/del.jsp");
         requestDispatcher.forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("name");
-        String sex = req.getParameter("sex");
-        byte age = (byte) Integer.parseInt(req.getParameter("age"));
-        String email = req.getParameter("email");
+        UserJdbcService usrSrv = new UserJdbcService();
         String ssn = req.getParameter("ssn");
-        User user = new User(name, sex, age, email, ssn);
 
-        usrSrv = new UserService();
-
-        if (usrSrv.updateUser(user)) {
+        if (!ssn.isEmpty()) {
+            usrSrv.deleteUser(ssn);
             resp.setStatus(HttpServletResponse.SC_OK);
         } else {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
 
-        req.setAttribute("user", user);
+        req.setAttribute("ssn", ssn);
         doGet(req, resp);
     }
 }
-

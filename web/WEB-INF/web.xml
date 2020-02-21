@@ -16,7 +16,7 @@
 <!--    &lt;!&ndash; add servlet &ndash;&gt;-->
 <!--    <servlet>-->
 <!--        <servlet-name>add</servlet-name>-->
-<!--        <servlet-class>servlets.AddServlet</servlet-class>-->
+<!--        <servlet-class>servlets.jdbc.AddServlet</servlet-class>-->
 <!--    </servlet>-->
 
 <!--    <servlet-mapping>-->
@@ -27,8 +27,18 @@
 <!--    &lt;!&ndash; list servlet &ndash;&gt;-->
 <!--    <servlet>-->
 <!--        <servlet-name>list</servlet-name>-->
-<!--        <servlet-class>servlets.ListServlet</servlet-class>-->
+<!--        <servlet-class>servlets.jdbc.ListServlet</servlet-class>-->
 <!--    </servlet>-->
+
+<!--        <servlet>-->
+<!--            <servlet-name>list_hbr</servlet-name>-->
+<!--            <servlet-class>servlets.hibr.ListServletHbr</servlet-class>-->
+<!--        </servlet>-->
+
+<!--        <servlet-mapping>-->
+<!--            <servlet-name>list_hbr</servlet-name>-->
+<!--            <url-pattern>/list_hbr</url-pattern>-->
+<!--        </servlet-mapping>-->
 
 <!--    <servlet-mapping>-->
 <!--        <servlet-name>list</servlet-name>-->

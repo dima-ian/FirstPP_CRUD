@@ -1,15 +1,33 @@
 package entities;
 
-import java.util.Objects;
+import javax.persistence.*;
+//import java.util.Objects;
 
+@Entity
+@Table(name = "usrs")
 public class User {
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "sex")
     private String sex;
+
+    @Column(name = "age")
     private byte age;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "ssn")
     private String ssn;
+
+    public User( ) { }
 
     public User(long id, String name, String sex, byte age, String email, String ssn) {
         this.id = id;
@@ -81,22 +99,22 @@ public class User {
         this.ssn = ssn;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id == user.id &&
-                sex == user.sex &&
-                name.equals(user.name) &&
-                email.equals(user.email) &&
-                ssn.equals(user.ssn);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, sex, email, ssn);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        User user = (User) o;
+//        return id == user.id &&
+//                sex == user.sex &&
+//                name.equals(user.name) &&
+//                email.equals(user.email) &&
+//                ssn.equals(user.ssn);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, name, sex, email, ssn);
+//    }
 
     @Override
     public String toString() {

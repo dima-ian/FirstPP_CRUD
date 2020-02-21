@@ -1,7 +1,7 @@
-package servlets;
+package servlets.jdbc;
 
 import entities.User;
-import service.UserService;
+import service.UserJdbcService;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,14 +20,13 @@ import java.util.List;
 
 public class ListServlet extends HttpServlet {
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserService usrSrv = new UserService();
+        UserJdbcService usrSrv = new UserJdbcService();
         List<User> usrsLst = usrSrv.getAllUsers();
         req.setAttribute("usrsLst", usrsLst);
 
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/list.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/jdbc/list.jsp");
         requestDispatcher.forward(req, resp);
     }
 }

@@ -1,25 +1,24 @@
 package service;
 
-import dao.UserDAO;
+import dao.UserJdbcDAO;
 import entities.User;
 import util.DBHelper;
-import java.sql.SQLException;
 import java.util.List;
 
-public class UserService {
+public class UserJdbcService {
 
-    public UserService() {  }
+    public UserJdbcService() {  }
 
-    public boolean addClient(User user)  {
+    public boolean addUser(User user)  {
         try {
-            UserDAO dao = getUserDAO();
+            UserJdbcDAO dao = getUserDAO();
             if (dao.validateUser(user.getSsn())) {
                 return false;
             }
-            else { dao.addClient(user);
+            else { dao.addUser(user);
                    return true;
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return true;
@@ -33,7 +32,7 @@ public class UserService {
             } else {
                 return false;
             }
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
             return false;
         }
@@ -48,7 +47,7 @@ public class UserService {
             } else {
                 return false;
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
@@ -57,14 +56,14 @@ public class UserService {
     public List<User> getAllUsers() {
         try {
             return getUserDAO().getAllUsers();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    private static UserDAO getUserDAO() {
-        return new UserDAO(DBHelper.getInstance().getMysqlConnection());
+    private static UserJdbcDAO getUserDAO() {
+        return new UserJdbcDAO(DBHelper.getInstance().getMysqlConnection());
     }
 
 

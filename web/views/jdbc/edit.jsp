@@ -53,7 +53,7 @@
 <body class="w3-light-grey">
 
 <div class="w3-container w3-blue-grey w3-opacity w3-right-align">
-    <h6>Web Demo App Java EE... - Pred.Prod Task # 1</h6>
+    <h6 class="w3-left-align">JDBC Version  |  Pred.Prod Task # 3</h6>
 </div>
 
 
@@ -127,7 +127,7 @@
 
 
 <div class="w3-container w3-grey w3-opacity w3-center w3-padding">
-    <button class="w3-btn w3-round-large w3-green" onclick="location.href='/'">Back to main</button>
+    <button class="w3-btn w3-round-large w3-green" onclick="location.href='/ix_jdbc.html'">Back to main</button>
 </div>
 
 </body>

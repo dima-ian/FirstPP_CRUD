@@ -48,11 +48,8 @@ public class DBHelper {
     }
 
 
-
         public Connection getTrueMysqlConnection() {
-
             Connection conn = null;
-
             try {
                 conn = ds.getConnection();
 
